@@ -70,7 +70,7 @@ class Barang
 
         $this->id = $barang['id'];
         $this->nmbarang = $barang['nmnbarang'];
-        $this->jumlah = $barang['nmbarang'];
+        $this->jumlah = $barang['jumlah'];
     }
 
     function update()

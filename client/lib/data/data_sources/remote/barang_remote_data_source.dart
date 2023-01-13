@@ -17,8 +17,8 @@ class BarangRemoteDataSourceImpl implements BarangRemoteDataSource {
   Future<List<BarangModel>> fetch() async {
     try {
       List<BarangModel> listBarang = [];
-      final response =
-          await dio.get('http://localhost/server/api/databarang/fetch');
+      final response = await dio
+          .get('http://localhost/mobile_api/server/api/databarang/fetch.php');
 
       for (var data in response.data['data']) {
         BarangModel barang = BarangModel.fromJson(data);

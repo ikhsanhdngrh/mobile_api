@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 13, 2023 at 02:11 PM
--- Server version: 10.4.19-MariaDB-log
--- PHP Version: 8.0.7
+-- Generation Time: Jan 13, 2023 at 04:30 PM
+-- Server version: 10.4.27-MariaDB
+-- PHP Version: 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -31,15 +31,15 @@ CREATE TABLE `data_barang` (
   `id` int(11) NOT NULL,
   `nmbarang` varchar(50) NOT NULL,
   `jumlah` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `data_barang`
 --
 
 INSERT INTO `data_barang` (`id`, `nmbarang`, `jumlah`) VALUES
-(1, 'T-Shirt Erigo', '20'),
-(2, 'Sepatu Converse', '5');
+(1, 'Sepatu', '2'),
+(2, 'baju', '5');
 
 --
 -- Indexes for dumped tables
