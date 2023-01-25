@@ -69,7 +69,7 @@ class Barang
         $barang = $stmt->fetch(PDO::FETCH_ASSOC);
 
         $this->id = $barang['id'];
-        $this->nmbarang = $barang['nmnbarang'];
+        $this->nmbarang = $barang['nmbarang'];
         $this->jumlah = $barang['jumlah'];
     }
 
