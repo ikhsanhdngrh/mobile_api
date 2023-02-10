@@ -15,3 +15,22 @@ class BarangFetchEvent extends BarangEvent {
   @override
   List<Object> get props => [];
 }
+
+class BarangDeleteEvent extends BarangEvent {
+  final int id;
+
+  const BarangDeleteEvent({required this.id});
+
+  @override
+  List<Object> get props => [id];
+}
+
+class BarangCreateEvent extends BarangEvent {
+  final String nmBarang;
+  final String jumlah;
+
+  const BarangCreateEvent({required this.nmBarang, required this.jumlah});
+
+  @override
+  List<Object> get props => [nmBarang, jumlah];
+}

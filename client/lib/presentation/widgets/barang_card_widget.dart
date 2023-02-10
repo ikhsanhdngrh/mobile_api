@@ -1,5 +1,9 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:client/data/models/barang_model.dart';
+import 'package:client/presentation/blocs/bloc/barang_bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class BarangCardWidget extends StatelessWidget {
   const BarangCardWidget({super.key, required this.barang});
@@ -29,7 +33,7 @@ class BarangCardWidget extends StatelessWidget {
                 ),
                 image: DecorationImage(
                   image: Image.network(
-                    'https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/0347d890-b837-475f-a1eb-850d09e7bd28/air-force-1-07-shoes-x9rqBh.png',
+                    'https://images.tokopedia.net/img/cache/500-square/VqbcmM/2022/2/26/11b36ea5-b928-40a8-b201-be6b02b0db27.jpg',
                   ).image,
                   fit: BoxFit.contain,
                 ),
@@ -45,11 +49,20 @@ class BarangCardWidget extends StatelessWidget {
           ),
           const SizedBox(height: 10),
           Text(
-            barang.jumlah,
+            "${barang.jumlah} Pcs",
             style: const TextStyle(fontSize: 14),
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
           ),
+          GestureDetector(
+              onTap: () {
+                context
+                    .read<BarangBloc>()
+                    .add(BarangDeleteEvent(id: barang.id));
+                context.read<BarangBloc>().add(const BarangFetchEvent());
+                log("Success Deleted : ${barang.id}");
+              },
+              child: const Icon(Icons.delete))
         ],
       ),
     );

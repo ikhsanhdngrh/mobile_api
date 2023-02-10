@@ -11,4 +11,15 @@ class BarangRepositoryImpl implements BarangRepository {
   Future<List<BarangModel>> fetch() async {
     return await barangRemoteDataSource.fetch();
   }
+
+  @override
+  Future<bool> delete({required int id}) async {
+    return await barangRemoteDataSource.delete(id: id);
+  }
+
+  Future<bool> create(
+      {required String nmBarang, required String jumlah}) async {
+    return await barangRemoteDataSource.create(
+        nmBarang: nmBarang, jumlah: jumlah);
+  }
 }

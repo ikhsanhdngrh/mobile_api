@@ -42,3 +42,21 @@ class BarangErrorState extends BarangState {
   @override
   List<Object?> get props => [message];
 }
+
+class BarangDeletedState extends BarangState {
+  const BarangDeletedState({required this.result});
+
+  final bool result;
+
+  @override
+  List<Object?> get props => [result];
+}
+
+class BarangCreatedState extends BarangState {
+  const BarangCreatedState({required this.result});
+
+  final bool result;
+
+  @override
+  List<Object?> get props => [result];
+}

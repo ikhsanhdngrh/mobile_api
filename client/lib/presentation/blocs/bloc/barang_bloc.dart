@@ -1,6 +1,8 @@
 import 'package:bloc/bloc.dart';
+import 'package:client/domain/use_cases/create_barang_use_case.dart';
 import 'package:equatable/equatable.dart';
 import 'package:client/data/models/barang_model.dart';
+import 'package:client/domain/use_cases/delete_barang_use_case.dart';
 import 'package:client/domain/use_cases/fetch_barang_use_case.dart';
 import 'package:stream_transform/stream_transform.dart';
 
@@ -16,11 +18,19 @@ EventTransformer<Event> debounce<Event>(Duration duration) {
 }
 
 class BarangBloc extends Bloc<BarangEvent, BarangState> {
-  BarangBloc({required this.fetchBarangUseCase}) : super(BarangInitialState()) {
+  BarangBloc({
+    required this.deleteBarangUseCase,
+    required this.fetchBarangUseCase,
+    required this.createBarangUseCase,
+  }) : super(BarangInitialState()) {
     on<BarangFetchEvent>(_fetch, transformer: debounce(_duration));
+    on<BarangDeleteEvent>(_delete, transformer: debounce(_duration));
+    on<BarangCreateEvent>(_create, transformer: debounce(_duration));
   }
 
   final FetchBarangUseCase fetchBarangUseCase;
+  final DeleteBarangUseCase deleteBarangUseCase;
+  final CreateBarangUseCase createBarangUseCase;
 
   /// This method is used as a listener fetch event.
   ///
@@ -31,6 +41,28 @@ class BarangBloc extends Bloc<BarangEvent, BarangState> {
     try {
       final listBarang = await fetchBarangUseCase.call();
       emit(BarangFetchedState(listBarang: listBarang));
+    } catch (error) {
+      emit(BarangErrorState(message: error.toString()));
+    }
+  }
+
+  void _delete(BarangDeleteEvent event, Emitter<BarangState> emit) async {
+    try {
+      int id = event.id;
+      final result = await deleteBarangUseCase.call(id: id);
+      emit(BarangDeletedState(result: result));
+    } catch (error) {
+      emit(BarangErrorState(message: error.toString()));
+    }
+  }
+
+  void _create(BarangCreateEvent event, Emitter<BarangState> emit) async {
+    try {
+      String nmBarang = event.nmBarang;
+      String jumlah = event.jumlah;
+      final result =
+          await createBarangUseCase.call(nmBarang: nmBarang, jumlah: jumlah);
+      emit(BarangCreatedState(result: result));
     } catch (error) {
       emit(BarangErrorState(message: error.toString()));
     }

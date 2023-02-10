@@ -21,7 +21,7 @@ $response = [];
 if ($request == 'POST') {
     if (
         !empty($data->id) &&
-        !empty($data->nama_barang) &&
+        !empty($data->nmbarang) &&
         !empty($data->jumlah)
     ) {
         $barang->id = $data->id;

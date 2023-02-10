@@ -3,6 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:client/presentation/blocs/bloc/barang_bloc.dart';
 import 'package:client/presentation/widgets/barang_card_widget.dart';
 
+import 'create_page.dart';
+
 class MainPage extends StatelessWidget {
   const MainPage({super.key});
 
@@ -50,6 +52,17 @@ class MainPage extends StatelessWidget {
             ],
           ),
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const CreatePage(),
+              ));
+        },
+        backgroundColor: Colors.blue,
+        child: const Icon(Icons.add),
       ),
     );
   }
