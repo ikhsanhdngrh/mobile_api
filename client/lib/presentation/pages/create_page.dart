@@ -24,14 +24,12 @@ class _CreatePageState extends State<CreatePage> {
         child: Column(
           children: [
             const TextField(
-              controller: nmBarangController,
               decoration: InputDecoration(hintText: 'Nama Barang'),
             ),
             const SizedBox(
               height: 10,
             ),
             const TextField(
-              controller: jumlahController,
               decoration: InputDecoration(hintText: 'Jumlah'),
             ),
             const SizedBox(
